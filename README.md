@@ -1,47 +1,19 @@
-# 微信小程序 仿百思不得姐
+# 微信小程序 现有APP迁移至微信小程序
 
 ## 接口
+目前实现：首页视频图片展示，点赞评论数量展示
+## 用户
+接入APP第三方登录，也可使用原有账号直接登录
+除不能实现拍摄上传，其它基本完成，包括话题评论，点赞
 
-- 首页 [http://api.budejie.com/api/api_open.php?a=list&c=data&type=1](http://api.budejie.com/api/api_open.php?a=list&c=data&type=1)
+## 预览
+![此处输入图片的描述][3]
+![此处输入图片的描述][1]
+![此处输入图片的描述][4]
+![此处输入图片的描述][2]
 
-	- type=1 	: 全部
-	- type=41 : 视频
-	- type=10 : 图片
-	- type=29 : 段子
-	- type=31 : 声音
-	- 加载更多 : 添加两个字段 
-		- page : 页码 (加载下一页需要)
-		- maxtime : 获取到的最后一条数据的**maxtime**字段 (加载下一页需要)
-- 评论列表 [http://api.budejie.com/api/api_open.php?a=dataList&c=comment&data_id=22062938&hot=1](http://api.budejie.com/api/api_open.php?a=dataList&c=comment&data_id=22062938&hot=1)
 
-	- data_id : 帖子ID
-	- hot : 获取到最热评论需要这个字段
-	- page : 页码 (加载下一页需要)
-	- lastcid : 获取到的最后一条评论的ID(加载下一页需要)
-
-- 推荐关注
-	- 左侧列表 [http://api.budejie.com/api/api_open.php?a=category&c=subscribe](http://api.budejie.com/api/api_open.php?a=category&c=subscribe)
-	- 右侧列表 [http://api.budejie.com/api/api_open.php?a=list&c=subscribe&category_id=35](http://api.budejie.com/api/api_open.php?a=list&c=subscribe&category_id=35&page=1)
-		- category_id : 左侧栏目 ID
-		- page : 当前页码 ,请求第一页数据的时候可不填
-	
-- 我的 [http://api.budejie.com/api/api_open.php?a=square&c=topic](http://api.budejie.com/api/api_open.php?a=square&c=topic)
-
-## 首页
-![](ScreenSnap/首页_全部.png)
-![](ScreenSnap/首页视频.png)
-
-## 推荐关注
-![](ScreenSnap/推荐关注.png)
-
-## 评论列表
-![](ScreenSnap/评论.png)
-
-## 关注
-![](ScreenSnap/关注.png)
-
-## 我的
-![](ScreenSnap/我的.png)
-
-## 登录
-![](ScreenSnap/登录.png)
+  [1]: http://p0mejgdza.bkt.clouddn.com//git/111519811298_.pic.jpg
+  [2]: http://p0mejgdza.bkt.clouddn.com//git/141519811299_.pic.jpg
+  [3]: http://p0mejgdza.bkt.clouddn.com//git/121519811299_.pic.jpg
+  [4]: http://p0mejgdza.bkt.clouddn.com//git/131519811299_.pic.jpg
