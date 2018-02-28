@@ -70,13 +70,9 @@ function alertViewWithCancel(title="提示",content="消息提示",confirm,showC
 function alertView(title="提示",content="消息提示",confirm){
   alertViewWithCancel(title,content,confirm,false);
 }
-// BaseURL: "https://www.bulunu.com/",
-// BaseURLID: "https://bulunu.suber360.com/",
-// BaseURL: "https://bulunu.surong360.com/",
-// BaseURLID: "http://p0mqyincn.bkt.clouddn.com/",
 module.exports = {
-  BaseURL: "https://bulunu.surong360.com/",
-  BaseURLID: "https://bulunu.suber360.com/",
+  BaseURL: "域名地址",
+  BaseURLID: "图片地址",
   get(url) {
     return new Promise((resolve, reject) => {
       wx.request({
