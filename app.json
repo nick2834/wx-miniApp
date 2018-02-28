@@ -1,0 +1,26 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/users/users",
+    "pages/tagdetail/tagdetail",
+    "pages/detail/detail",
+    "pages/detail/detailImage",
+    "pages/mine/mine",
+    "pages/login/login",
+    "pages/changeuser/changeuser",
+    "pages/register/register",
+    "pages/bindcode/bindcode",
+    "pages/camara/camara"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"white",
+    "backgroundColor": "#eaeaea"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "debug":true
+}

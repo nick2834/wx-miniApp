@@ -1,0 +1,37 @@
+<view class='page' wx:if="{{pageShow}}">
+  <view class='user_bg'>
+    <image wx:if="{{!erroCode}}" class='mine_user_avatar' src='../../images/other/setup-head-default.png'></image>
+    <view class='mine_user' wx:else>
+      <block wx:if="{{user.hasHttp}}">
+        <image wx:if="{{users.avatar}}" class='mine_user_avatar' src='{{users.avatar}}'></image>  
+      </block>
+      <block wx:else>
+        <image wx:if="{{users.avatar}}" class='mine_user_avatar' src='{{users.avatar}}'></image>  
+      </block>
+      <view class='introduction'>{{users.introduction}}</view>
+    </view>
+  </view>
+  <view class='user_head_title'>他的发布</view>
+  <view class="page__bd" wx:if="{{usersTopics.length > 0}}">
+    <view class="weui-grids">
+      <block wx:for="{{usersTopics}}" wx:key="*this">
+        <navigator wx:if='{{item.topic_type === "video"}}' url="/pages/detail/detail?id={{item.id}}" class="weui-grid" hover-class="weui-grid_active" data-id='{{item.id}}'>
+            <image wx:if="{{item.video_info.video_image}}" class="weui-grid__icon" src="{{imageUrl +item.video_info.video_image+'-center100'}}"  mode="widthFix">
+              <image class='media_icon_btn' src='../../images/play_icon.png'></image>
+            </image>
+        </navigator>
+        <navigator wx:else url="/pages/detail/detailImage?id={{item.id}}" class="weui-grid" hover-class="weui-grid_active" data-id='{{item.id}}'>
+            <image class="weui-grid__icon" src="{{imageUrl + item.image_urls[0] + '-center100'}}" mode="widthFix">
+              <view class='media_text'>
+                <view class='text'>{{item.title}}</view>
+              </view>
+            </image>
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <view wx:else>
+    <icon class='placeholder iconfont icon-biaoqing-nanguo'></icon>
+    <view class='placeholder_text'>他还没有发布过话题了</view>
+  </view>
+</view>

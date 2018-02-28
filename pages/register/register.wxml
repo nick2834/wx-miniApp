@@ -1,0 +1,16 @@
+<view class="content">
+    <view class='login_header' style="height:243rpx;"></view>
+    <form bindsubmit="formSubmit">
+      <view class="input">
+        <input name="phone" maxlength="30" placeholder="请输入手机号" bindblur='getusers'>{{phone}}</input>
+        <view class="formline"></view>
+        <view class='get_code'>
+          <input class='username' name="identify" maxlength="18" placeholder="输入验证码"></input>
+          <view class='code' bindtap='getCode'>{{getmsg}}</view>
+        </view>
+        <view class="formline"></view>
+        <input name="password" password maxlength="30" placeholder="请输入密码" bindblur='getpsw'></input>
+      </view>
+      <button class="form_button" formType="submit">注册</button>
+    </form>
+</view>

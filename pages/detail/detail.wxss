@@ -1,0 +1,110 @@
+page{
+  background: #fff;
+  height: 100%
+}
+.page{
+  height: 100%;
+  font-size: 0;
+}
+.weui-form-preview__hd{
+  text-align: left;
+  height: auto;
+  line-height: 0;
+  padding: 5px;
+}
+.weui-form-preview__bd{
+  padding: 5px;
+}
+.weui-form-preview__hd::after{
+  border-bottom: none;
+}
+.user_info{
+  top: 5px;
+}
+.thumbs{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  line-height: 45px;
+}
+.thumbs-active{
+  color: #dd2323
+}
+.weui-form-preview__value{
+  text-align: left
+}
+.send_form{
+  display: inline-block;
+  justify-content: space-between;
+  width: 100%;
+  line-height: 40px;
+  border-top: 1rpx solid #d9d9d9;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.submit-btn{
+  float: left;
+  width: 15%;
+  height: inherit;
+  border-left:  1rpx solid #d9d9d9;
+  box-sizing: border-box;
+}
+.submit-btn button{
+  background: #dd2323;
+  color: #fff;
+  border-radius: 0;
+  font-size: 14px;
+  height: 46px;
+  line-height: 46px;
+}
+.submit-btn button::after{
+  border:none;
+}
+.weui-input {
+  float: left;
+  line-height:46px;
+  min-height: 0;
+  font-size: 14px;
+  width: 85%;
+  height: 46px;
+  padding-left:10px; 
+  box-sizing: border-box
+}
+.weui-form-preview__ft {
+  padding: 5px;
+  overflow: hidden;
+  justify-content: space-between;
+}
+.ft_left_above,.ft_left_down{
+  line-height: 26px;
+  font-size: 22rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.license{
+  float: left;
+  max-width: 50%;
+  margin-right: 5px;
+}
+.tags{
+  float: left;
+  max-width: 50%;
+  margin-right: 5px;
+}
+.ft_left{
+  width: 100%;
+}
+.reply{
+  float: none;
+  width: 100%;
+  position: relative;
+  padding-right: 60px
+}
+.reply_btn{
+  float: none;
+  position: absolute;
+  top:0;
+  right:0;
+  width: 60px
+}

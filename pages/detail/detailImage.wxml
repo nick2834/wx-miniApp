@@ -1,0 +1,136 @@
+<view class='page'>
+  <scroll-view scroll-y='true' style='height:{{windowHeight - 47}}px'>
+    <view class="weui-form-preview__hd">
+    <navigator hover-class="none" url='/pages/users/users?id={{detailList.author.id}}'>
+      <block wx:if='{{detailList.author.hasAvatar}}'>
+        <image lazy-load class="user_avatar"  src='{{detailList.author.avatar}}'></image>
+      </block>
+      <block wx:elif='{{detailList.author.hasAvatar === "default"}}'>
+        <image lazy-load class="user_avatar" src='{{detailList.author.avatar}}'></image>
+      </block>
+      <block wx:else>
+        <image lazy-load class="user_avatar" src='{{detailList.author.avatar}}'></image>
+      </block>
+    </navigator>
+      <view class='user_info'>
+        <text class='user_msg user_name'>{{detailList.author.nickname}}</text>
+        <text class='user_msg timestamp'>{{detailList.created_at}}</text>
+      </view>
+      <!-- <view class='thumbs iconfont icon-xin1 {{detailList.viewer_liked?"thumbs-active":""}}' bindtap='bindThumb'>
+        <text style='padding-left:5px;'>{{detailList.likes}}</text>
+      </view> -->
+      <!-- <view class='thumbs'>
+        <navigator class='check-user' hover-class="none" url='/pages/users/users?id={{detailList.author.id}}'>查看</navigator>
+      </view> -->
+    </view>
+    <view class="weui-form-preview__bd">
+      <view class="weui-form-preview__item">
+          <view class="weui-form-preview__value">{{detailList.title}}</view>
+      </view>
+    </view>
+    <view class="weui-form-preview__ft">
+      <view class='ft_left'>
+        <view class='ft_left_above'>
+          <view class='license license_name' wx:for='{{detailList.license}}' wx:key='{{key}}' data-id='{{item.id}}'>{{item.license}}</view>
+          <navigator url='/pages/tagdetail/tagdetail?id={{item.id}}' hover-class="none" wx:for='{{detailList.tags}}' wx:key='{{key}}' data-id='{{item.id}}'><view class='tags tags_name'>#{{item.name}}#</view>
+          </navigator>
+        </view>
+        <view class='ft_left_down'wx:if='{{detailList.address !== ""}}' >
+          <view class='address iconfont icon-04'>{{detailList.address}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="page__bd">
+      <view class="weui-grids">
+        <block wx:for="{{detailList.image_urls}}" wx:key="*this">
+          <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+            <image wx:if="{{item}}" class="weui-grid__icon" bindtap="clickImage" src="{{imageUrl + item + '-center100'}}"  mode="widthFix"/>
+          </navigator>
+        </block>
+      </view>
+    </view>
+    <view class='comment_views' wx:if="{{hot_comments.length > 0}}">
+      <view class='hot_tags'>热门评论</view>
+      <view wx:for="{{hot_comments}}" wx:key="{{key}}" data-cid="{{item.id}}">
+          <view class="weui-form-preview__hd">
+            <block wx:if='{{item.author.hasAvatar}}'>
+              <image lazy-load class="user_avatar comment_avatar"  src='{{item.author.avatar}}'></image>
+            </block>
+            <block wx:else>
+              <image lazy-load class="user_avatar comment_avatar" src='{{item.author.nickname + item.author.avatar}}'></image>
+            </block>
+            <view class='user_info comment_info' data-id='{{item.id}}' data-name='{{item.author.nickname}}' bindtap='getReply'>
+              <text class='user_msg user_name user_name_topic'>{{item.author.nickname}}</text>
+              <text class='user_msg timestamp timestamp_topic'>{{item.created_at}}</text>
+            </view>
+            <view class='thumbs thumbs_comment iconfont icon-xin1 {{thumbs?"thumbs-active":""}}' bindtap='bindThumb'>
+              <text style='padding-left:5px;'>{{item.likes}}</text>
+            </view>
+          </view>
+          <view class="weui-form-preview__bd comment-form-preview">
+              <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__value">
+                    <view class='reply_to_user'>{{item.reply_to_user}}</view>
+                    {{item.content}}
+                  </view>
+              </view>
+            </view>
+        </view>
+    </view>
+    <view class='comment_views'>
+      <view class='hot_tags'>最近评论</view>
+      <block wx:if="{{comments.length > 0}}">
+        <view wx:for="{{comments}}" wx:key="{{key}}" data-cid="{{item.id}}">
+          <view class="weui-form-preview__hd">
+            <block wx:if='{{item.author.hasAvatar}}'>
+              <image lazy-load class="user_avatar comment_avatar"  src='{{item.author.avatar}}'></image>
+            </block>
+            <block wx:else>
+              <image lazy-load class="user_avatar comment_avatar" src='{{item.author.nickname + item.author.avatar}}'></image>
+            </block>
+            <view class='user_info comment_info' data-id='{{item.id}}' data-name='{{item.author.nickname}}' bindtap='getReply'>
+              <text class='user_msg user_name user_name_topic'>{{item.author.nickname}}</text>
+              <text class='user_msg timestamp timestamp_topic'>{{item.created_at}}</text>
+            </view>
+            <view class='thumbs thumbs_comment iconfont icon-xin1 {{thumbs?"thumbs-active":""}}' bindtap='bindThumb'>
+              <text style='padding-left:5px;'>{{item.likes}}</text>
+            </view>
+          </view>
+          <view class="weui-form-preview__bd comment-form-preview">
+              <view class="weui-form-preview__item">
+                  <view class="weui-form-preview__value">
+                    <view class='reply_to_user'>{{item.reply_to_user}}</view>
+                    {{item.content}}
+                  </view>
+              </view>
+            </view>
+        </view>
+      </block>
+        <view wx:else>
+          <icon class='placeholder iconfont icon-biaoqing-nanguo'></icon>
+        </view>
+    </view>
+  </scroll-view>
+  <form wx:if='{{placeholder === "说点什么吧...!"}}' class='send_form' bindsubmit="formSubmit" bindreset="formReset">
+    <input name="input" class="weui-input" placeholder="{{placeholder}}" value='{{sendMessage}}' bindinput='bindinput' bindconfirm='formSubmit' bindfocus='bindfocus' bindblur='bindblur' focus='{{focus}}' confirm-type='send'></input>
+    <view class='submit-btn'>
+      <button formType="submit" type='default' style='display:none'>
+        <icon class='iconfont icon-fasong'></icon> 
+      </button>
+      <view class='sendLike iconfont icon-xin1 {{detailList.viewer_liked?"thumbs-active":""}}' bindtap='bindThumb'>
+        <text style='padding-left:5px;'>{{detailList.likes}}</text>
+      </view>
+    </view> 
+  </form>
+  <form wx:else class='send_form' bindsubmit="formSubmitReply" bindreset="formResetReply">
+    <input name="input" class="weui-input" placeholder="{{placeholder}}" value='{{sendMessage}}' bindinput='bindinput' bindconfirm='formSubmitReply' bindfocus='bindfocus' bindblur='bindblur' focus='{{focus}}' confirm-type='send'></input>
+     <view class='submit-btn'>
+      <button formType="submit" type='default' style='display:none'>
+        <icon class='iconfont icon-fasong'></icon> 
+      </button>
+      <view class='sendLike iconfont icon-xin1 {{detailList.viewer_liked?"thumbs-active":""}}' bindtap='bindThumb'>
+        <text style='padding-left:5px;'>{{detailList.likes}}</text>
+      </view>
+    </view> 
+  </form> 
+</view>

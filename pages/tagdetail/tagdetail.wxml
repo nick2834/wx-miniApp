@@ -1,0 +1,50 @@
+<view class='page'>
+  <scroll-view scroll-y="true" style="height:{{systemInfo.windowHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refesh">
+    <block wx:if="{{hot_topics.length > 0}}">
+      <view class='hot_tags'>热门话题</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd" wx:for='{{hot_topics}}' wx:key='{{item.id}}' data-id='{{item.id}}'>
+            <navigator url="/pages/detail/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title">{{item.author.nickname}}</view>
+                    <view class="weui-media-box__desc">{{item.title}}</view>
+                </view>
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" wx:if="{{item.topic_type === 'video'}}">
+                    <image class="weui-media-box__thumb" src="{{imageUrl + item.video_info.video_image + '-center100'}}" >
+                      <image class='media_icon_btn' src='../../images/play_icon.png'></image>
+                    </image>
+                </view>
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" wx:else>
+                    <image class="weui-media-box__thumb" src="{{imageUrl + item.image_urls[0] + '-center100'}}" ></image>
+                </view>
+            </navigator>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{topics.length > 0}}">
+      <view class='hot_tags'>最近话题</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd" wx:for="{{topics}}" wx:key="{{item.id}}" data-id='{{item.id}}'>
+            <navigator url="/pages/detail/detail?id={{item.id}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" wx:if="{{item.topic_type === 'video'}}">
+              <image class="weui-media-box__thumb" src="{{imageUrl + item.video_info.video_image + '-center100'}}" >
+                <image class='media_icon_btn' src='../../images/play_icon.png'></image>
+              </image>
+            </view>
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" wx:else>
+                <image class="weui-media-box__thumb" src="{{imageUrl + item.image_urls[0] + '-center100'}}" ></image>
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg recent-tags">
+              <view class="weui-media-box__title">{{item.author.nickname}}</view>
+              <view class="weui-media-box__desc">{{item.title}}</view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <icon class='placeholder iconfont icon-biaoqing-nanguo'></icon>
+      <view class='placeholder_text'>当前没有话题哦！！！</view>
+    </block>
+  </scroll-view>
+</view>

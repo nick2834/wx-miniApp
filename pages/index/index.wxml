@@ -1,0 +1,103 @@
+<view class='page flex'>
+  <!-- <view class='hot_tags'>最新话题</view> -->
+  <scroll-view scroll-y="true" style="height:{{systemInfo.windowHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refesh">
+    <block wx:if='{{hotTags.length > 3}}'>
+      <view class='hot_tags'>热门标签</view>
+      <scroll-view scroll-x="true" class='tag_view'>
+        <image lazy-load wx:for="{{hotTags}}" class='scroll-view-item' wx:key="id" data-idx="{{item.id}}" bindtap='swichNav' src='{{item.tagBarBg}}'>
+          <text class='tag_name'>#{{item.name}}#</text>
+        </image> 
+      </scroll-view>
+    </block>
+    <view class="weui-form-preview" wx:for="{{topicList}}" wx:key="id" data-idx="{{item.id}}">
+      <navigator wx:if="{{item.topic_type == 'video'}}" url="/pages/detail/detail?id={{item.id}}&viewer_id={{viewer_id}}">
+        <view class="weui-form-preview__hd">
+          <block wx:if='{{item.author.hasAvatar}}'>
+                <image lazy-load class="user_avatar comment_avatar"  src='{{item.author.avatar}}'></image>
+              </block>
+              <block wx:elif='{{item.author.hasAvatar === "default"}}'>
+                <image lazy-load class="user_avatar comment_avatar" src='{{item.author.avatar}}'></image>
+              </block>
+              <block wx:else>
+                <image lazy-load class="user_avatar comment_avatar" src='{{item.author.avatar}}'></image>
+              </block>
+          <view class='user_info'>
+            <text class='user_msg user_name'>{{item.author.nickname}}</text>
+            <text class='user_msg timestamp'>{{item.created_at}}</text>
+          </view>
+        </view>
+        <view class='title'>{{item.title}}</view>
+        <view class="weui-form-preview__bd">
+            <image class='image_cover' lazy-load='true'  src="{{imageUrl + item.video_info.video_image + '-center100'}}" controls="false">
+              <image class='video_btn' lazy-load='true'  src='../../images/play_icon.png'>
+              </image>
+            </image>
+        </view>
+        <view class="weui-form-preview__ft">
+          <view class='ft_left'>
+            <view class='ft_left_above'>
+              <view class='license license_name' wx:for='{{item.license}}' wx:key='{{key}}' data-id='{{item.id}}'>
+                {{item.license}}
+              </view>
+              <view class='tags tags_name' wx:for='{{item.tags}}' wx:key='{{key}}' data-id='{{item.id}}'>
+                #{{item.name}}#
+              </view>
+            </view>
+            <view class='ft_left_down'wx:if='{{item.address !== ""}}' >
+              <view class='address iconfont icon-04'>{{item.address}}</view>
+            </view>
+          </view>
+          <view class='ft_right'>
+            <view class='ft_likes iconfont icon-xin1'>{{item.likes}}</view>
+            <view class='ft_thums iconfont icon-comments'>{{item.comment_count}}</view>
+          </view>
+        </view>
+      </navigator>
+      <navigator wx:else url="/pages/detail/detailImage?id={{item.id}}&viewer_id={{viewer_id}}">
+        <view class="weui-form-preview__hd">
+        <!-- <navigator url='/pages/users/users?id={{item.author.id}}'> -->
+          <block wx:if='{{item.author.hasAvatar}}'>
+            <image lazy-load class="user_avatar comment_avatar"  src='{{item.author.avatar}}'></image>
+          </block>
+          <block wx:elif='{{item.author.hasAvatar === "default"}}'>
+            <image lazy-load class="user_avatar comment_avatar" src='{{item.author.avatar}}'></image>
+          </block>
+          <block wx:else>
+            <image lazy-load class="user_avatar comment_avatar" src='{{item.author.avatar}}'></image>
+          </block>
+          <view class='user_info'>
+            <text class='user_msg user_name'>{{item.author.nickname}}</text>
+            <text class='user_msg timestamp'>{{item.created_at}}</text>
+          </view>
+        <!-- </navigator> -->
+        </view>
+        <view class='title'>{{item.title}}</view>
+        <view class="weui-form-preview__bd">
+            <image class='image_cover' lazy-load='true' src="{{imageUrl + item.image_urls[0] + '-center100'}}">
+            </image>
+        </view>
+        <view class="weui-form-preview__ft">
+        <view class='ft_left'>
+          <view class='ft_left_above'>
+            <view class='license license_name' wx:for='{{item.license}}' wx:key='{{key}}' data-id='{{item.id}}'>
+              {{item.license}}
+            </view>
+            <view class='tags tags_name' wx:for='{{item.tags}}' wx:key='{{key}}' data-id='{{item.id}}'>
+              #{{item.name}}#
+            </view>
+          </view>
+          <view class='ft_left_down'wx:if='{{item.address !== ""}}' >
+            <view class='address iconfont icon-04'>{{item.address}}</view>
+          </view>
+        </view>
+        <view class='ft_right'>
+          <view class='ft_likes iconfont icon-xin1'>{{item.likes}}</view>
+          <view class='ft_thums iconfont icon-comments'>{{item.comment_count}}</view>
+        </view>
+      </view>
+      </navigator>
+    </view>
+  </scroll-view>
+   <view class='user_icon iconfont icon-user' bindtap='backToUser'></view> 
+</view>
+

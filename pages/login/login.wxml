@@ -1,0 +1,19 @@
+<view class="content">
+    <view class='login_header' style="height:243rpx;">
+
+    </view>
+    <form bindsubmit="formSubmit">
+        <view class="input">
+          <input name="phone" maxlength="18" placeholder="请输入手机号"></input>
+          <view class="formline"></view>
+          <input name="password" password maxlength="30" placeholder="请输入密码"></input>
+        </view>
+        <button class="form_button" formType="submit">登录</button>
+        <button class="form_button" bindtap='gotowechat'>微信登录</button>
+    </form>
+
+    <view class="register_forgetpwd">
+       <text class="register" bindtap="register">立即注册</text>
+      <text class="forgetpwd" bindtap="forgetpwd">忘记密码</text> 
+    </view>
+</view>
