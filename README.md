@@ -7,6 +7,8 @@
 除不能实现拍摄上传，其它基本完成，包括话题评论，点赞
 
 ## 预览
+
+![此处输入图片的描述][6]
 ![此处输入图片的描述][3]
 ![此处输入图片的描述][1]
 ![此处输入图片的描述][4]
@@ -17,3 +19,4 @@
   [2]: http://p0mejgdza.bkt.clouddn.com//git/141519811299_.pic.jpg
   [3]: http://p0mejgdza.bkt.clouddn.com//git/121519811299_.pic.jpg
   [4]: http://p0mejgdza.bkt.clouddn.com//git/131519811299_.pic.jpg
+  [6]: http://p0mejgdza.bkt.clouddn.com//git/-HMLhe.gif
